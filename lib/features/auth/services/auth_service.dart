@@ -15,9 +15,9 @@ class AuthService {
     try {
       User user = User(
         id: '',
-        name: '',
-        email: '',
-        password: '',
+        name: name,
+        email: email,
+        password: password,
         address: '',
         type: '',
         token: '',
