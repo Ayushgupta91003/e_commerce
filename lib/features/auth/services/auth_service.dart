@@ -26,7 +26,7 @@ class AuthService {
         Uri.parse('$uri/api/signup'),
         body: user.toJson(),
         headers: <String, String>{
-          'Content-Type': 'application/json,charset=UTF-8',
+          'Content-Type': 'application/json; charset=UTF-8',
         },
       );
       httpErrorHandle(
