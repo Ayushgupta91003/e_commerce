@@ -6,6 +6,7 @@ import 'package:e_commerce/constants/utils.dart';
 import 'package:e_commerce/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   void signUpUser({
@@ -51,11 +52,10 @@ class AuthService {
     required BuildContext context,
     required String email,
     required String password,
-    required String name,
   }) async {
     try {
       http.Response res = await http.post(
-        Uri.parse('$uri/api/signup'),
+        Uri.parse('$uri/api/signin'),
         body: jsonEncode({
           'email': email,
           'password': password,
@@ -68,7 +68,10 @@ class AuthService {
       httpErrorHandle(
         response: res,
         context: context,
-        onSuccess: () {},
+        onSuccess: () async {
+          SharedPreferences pref = await SharedPreferences.getInstance();
+          await pref.setString('x-auth-value', jsonDecode(res.body)['token']);
+        },
       );
     } catch (e) {
       showSnackBar(context, e.toString());
