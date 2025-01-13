@@ -3,9 +3,12 @@ import 'dart:convert';
 import 'package:e_commerce/constants/error_handling.dart';
 import 'package:e_commerce/constants/global_variables.dart';
 import 'package:e_commerce/constants/utils.dart';
+import 'package:e_commerce/features/home/screens/home_screen.dart';
 import 'package:e_commerce/models/user.dart';
+import 'package:e_commerce/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
@@ -70,7 +73,13 @@ class AuthService {
         context: context,
         onSuccess: () async {
           SharedPreferences pref = await SharedPreferences.getInstance();
+          Provider.of<UserProvider>(context, listen: false).setUser(res.body);
           await pref.setString('x-auth-value', jsonDecode(res.body)['token']);
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            HomeScreen.routeName,
+            (route) => false,
+          );
         },
       );
     } catch (e) {
