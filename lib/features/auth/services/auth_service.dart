@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:e_commerce/constants/error_handling.dart';
 import 'package:e_commerce/constants/global_variables.dart';
 import 'package:e_commerce/constants/utils.dart';
@@ -38,6 +40,35 @@ class AuthService {
             'Account created! Login with the same credentials',
           );
         },
+      );
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
+  }
+
+  // SignInUser
+  void signInUser({
+    required BuildContext context,
+    required String email,
+    required String password,
+    required String name,
+  }) async {
+    try {
+      http.Response res = await http.post(
+        Uri.parse('$uri/api/signup'),
+        body: jsonEncode({
+          'email': email,
+          'password': password,
+        }),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+      print(res.body);
+      httpErrorHandle(
+        response: res,
+        context: context,
+        onSuccess: () {},
       );
     } catch (e) {
       showSnackBar(context, e.toString());
