@@ -73,6 +73,16 @@ class _DealOfDayState extends State<DealOfDay> {
               ),
             ],
           ),
+        ),
+        Container(
+          padding: const EdgeInsets.symmetric(vertical: 15).copyWith(left: 15),
+          alignment: Alignment.topLeft,
+          child: Text(
+            'See All Deals',
+            style: TextStyle(
+              color: Colors.cyan[800],
+            ),
+          ),
         )
       ],
     );
