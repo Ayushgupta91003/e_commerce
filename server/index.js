@@ -1,8 +1,24 @@
 // IMPORTS FROM PACKAGES
-const express = require('express');
-const mongoose = require('mongoose');
+const express = require("express");
+const mongoose = require("mongoose");
+const adminRouter = require("./routes/admin");
 // IMPORTS FROM OTHER FILES
-const authRouter = require('./routes/auth.js');
+const authRouter = require("./routes/auth");
+// const productRouter = require("./routes/product");
+// const userRouter = require("./routes/user");
+
+
+
+// // IMPORTS FROM PACKAGES
+// const express = require('express');
+// const mongoose = require('mongoose');
+// // IMPORTS FROM OTHER FILES
+// const authRouter = require('./routes/auth.js');
+// const adminRouter = require('./routes/admin.js');
+
+
+
+
 // import 'package:flutter/screens/auth.dart'                  => 
 // import './features/auth/screens/auth_screen.dart'                 => relative importing
 
@@ -19,6 +35,7 @@ const DB = "mongodb+srv://ayushg:ayush123@cluster0.keyt0.mongodb.net/?retryWrite
 // client -> middleware -> server -> client
 app.use(express.json());
 app.use(authRouter);
+app.use(adminRouter);
 
 
 // Connections
