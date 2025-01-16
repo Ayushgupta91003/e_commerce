@@ -63,39 +63,53 @@ class _CategoryDealsScreenState extends State<CategoryDealsScreen> {
                 SizedBox(
                   height: 170,
                   child: GridView.builder(
-                      itemCount: productList!.length,
-                      scrollDirection: Axis.horizontal,
-                      padding: EdgeInsets.only(left: 15),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 1,
-                        childAspectRatio: 1.4,
-                        mainAxisSpacing: 10,
-                      ),
-                      itemBuilder: (context, index) {
-                        final product = productList![index];
-                        return Column(
-                          children: [
-                            SizedBox(
-                              height: 130,
-                              child: DecoratedBox(
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: Colors.black,
-                                    width: 0.5,
-                                  ),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.all(10),
-                                  child: Image.network(
-                                    product.images[0],
-                                  ),
+                    itemCount: productList!.length,
+                    scrollDirection: Axis.horizontal,
+                    padding: EdgeInsets.only(left: 15),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 1,
+                      childAspectRatio: 1.4,
+                      mainAxisSpacing: 10,
+                    ),
+                    itemBuilder: (context, index) {
+                      final product = productList![index];
+                      return Column(
+                        children: [
+                          SizedBox(
+                            height: 130,
+                            child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Colors.black,
+                                  width: 0.5,
                                 ),
                               ),
-                            )
-                          ],
-                        );
-                      }),
+                              child: Padding(
+                                padding: EdgeInsets.all(10),
+                                child: Image.network(
+                                  product.images[0],
+                                ),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            alignment: Alignment.topLeft,
+                            padding: const EdgeInsets.only(
+                              left: 0,
+                              top: 5,
+                              right: 15,
+                            ),
+                            child: Text(
+                              product.name,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  ),
                 )
               ],
             ),
